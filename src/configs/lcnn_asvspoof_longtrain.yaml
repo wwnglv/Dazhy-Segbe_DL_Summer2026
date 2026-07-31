@@ -1,0 +1,82 @@
+name: "asvspoof_lcnn_lfcc"
+n_gpu: 1
+
+preprocessing:
+  sr: 16000
+
+transforms:
+  instance_transforms:
+    train: null
+    val: null
+    inference: null
+  batch_transforms:
+    train: null
+    val: null
+    inference: null
+
+model:
+  _target_: src.model.LightCNN
+  num_classes: 2
+  dropout_prob: 0.7
+
+datasets:
+  train:
+    _target_: src.datasets.asvspoof.VoiceDataset
+    protocol_path: "/content/asvpoof2019/LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.train.trn.txt"
+    audio_dir: "/content/asvpoof2019/LA/LA/ASVspoof2019_LA_train/flac"
+  val:
+    _target_: src.datasets.asvspoof.VoiceDataset
+    protocol_path: "/content/asvpoof2019/LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.dev.trl.txt"
+    audio_dir: "/content/asvpoof2019/LA/LA/ASVspoof2019_LA_dev/flac"
+
+dataloader:
+  _target_: torch.utils.data.DataLoader
+  batch_size: 32
+  num_workers: 2
+
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 0.0003
+  weight_decay: 0.0001
+
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  T_max: 60
+
+loss_function:
+  _target_: src.loss.example.ExampleLoss
+
+metrics:
+  train: []
+  val:
+    - _target_: src.metrics.ERRMetric
+      name: "ERRMetric"
+  inference:
+    - _target_: src.metrics.ERRMetric
+      name: "ERRMetric"
+
+writer:
+  _target_: src.logger.WandBWriter
+  project_name: "asvspoof_lcnn"
+  run_name: "lcnn_lfcc_longtrain"
+  id_length: 8
+  log_checkpoints: False
+  loss_names: ["loss"]
+  mode: "online"
+  entity: null
+  log_code: True
+
+trainer:
+  seed: 42
+  device: "cuda"
+  device_tensors: ["data_object", "labels"]
+  n_epochs: 60
+  save_dir: "/content/drive/MyDrive/asvspoof_checkpoints/"
+  save_period: 5
+  verbosity: 2
+  monitor: "min val_ERRMetric"
+  early_stop: 15
+  len_epoch: null
+  log_step: 100
+  override: True
+  resume: null

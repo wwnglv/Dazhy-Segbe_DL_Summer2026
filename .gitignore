@@ -1,0 +1,13 @@
+*.zip
+*.tar
+*.tar.gz
+*.pth
+*.pt
+__pycache__/
+.cache/
+.hydra/
+saved/
+wandb/
+.ipynb_checkpoints/
+project_backup.zip
+asvpoof-2019-dataset.zip
