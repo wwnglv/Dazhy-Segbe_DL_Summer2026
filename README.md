@@ -1,5 +1,5 @@
 
-# ASVspoof 2019 LA — Voice Anti-Spoofing (LCNN + LFCC)
+# ASVspoof 2019
 
 A solution for the synthetic speech detection task (Logical Access) on the [ASVspoof 2019](https://www.kaggle.com/datasets/awsaf49/asvpoof-2019-dataset) dataset, developed as part of the Deep Learning mini-course, Summer 2026. The repository is based on the [PyTorch Project Template](https://github.com/Blinorot/pytorch_project_template).
 
@@ -30,8 +30,6 @@ cd Dazhy-Segbe_DL_Summer2026
 pip install -r requirements.txt
 pip install torchaudio==2.2.0 --no-deps
 ```
-
-The dataset will be downloaded automatically via `kagglehub` on the first run (`awsaf49/asvpoof-2019-dataset`), or it can be downloaded manually from [Kaggle](https://www.kaggle.com/datasets/awsaf49/asvpoof-2019-dataset).
 
 ## Training
 
