@@ -1,7 +1,7 @@
-```markdown
+
 # ASVspoof 2019 LA — Voice Anti-Spoofing (LCNN + LFCC)
 
-A solution for the speech detection task (Logical Access) on the [ASVspoof 2019](https://www.kaggle.com/datasets/awsaf49/asvpoof-2019-dataset) dataset, developed as part of the DL Educational Internship, Summer 2026. The repository is based on the [PyTorch Project Template](https://github.com/Blinorot/pytorch_project_template).
+A solution for the synthetic speech detection task (Logical Access) on the [ASVspoof 2019](https://www.kaggle.com/datasets/awsaf49/asvpoof-2019-dataset) dataset, developed as part of the Deep Learning mini-course, Summer 2026. The repository is based on the [PyTorch Project Template](https://github.com/Blinorot/pytorch_project_template).
 
 ## Results
 
@@ -20,6 +20,8 @@ LCNN (Light CNN) with Max-Feature-Map (MFM) activation:
 - Dropout(p=0.7) → BatchNorm1d(128) → Linear(128, 2)
 - Loss: CrossEntropyLoss, Optimizer: Adam (lr=3e-4), CosineAnnealingLR, 60 epochs
 
+Architecture details and a description of the experiments conducted can be found in the report file (`otchet_praktika.docx`) in this repository.
+
 ## Installation
 
 ```bash
@@ -27,7 +29,6 @@ git clone [https://github.com/wwnglv/Dazhy-Segbe_DL_Summer2026.git](https://gith
 cd Dazhy-Segbe_DL_Summer2026
 pip install -r requirements.txt
 pip install torchaudio==2.2.0 --no-deps
-
 ```
 
 The dataset will be downloaded automatically via `kagglehub` on the first run (`awsaf49/asvpoof-2019-dataset`), or it can be downloaded manually from [Kaggle](https://www.kaggle.com/datasets/awsaf49/asvpoof-2019-dataset).
